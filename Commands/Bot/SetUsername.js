@@ -20,10 +20,18 @@ class SetUsernameCommand extends commando.Command
         
             await message.client.user.setUsername (username);
 
-            console.log ("Username was changed:\nNew username is: " + username);
+            await message.channel.startTyping ();
+            await message.channel.sendMessage ("My name has been successfully changed! ^-^ I hope you like it boo.");
+            await message.channel.stopTyping (true);
+
+            console.log ("Username was changed!\nNew username is: " + username);
 
             return;
         }
+
+        await message.channel.startTyping ();
+        await message.channel.sendMessage ("Only bot owners are allowed to use this command!!");
+        await message.channel.stopTyping (true);
     }
 }
 

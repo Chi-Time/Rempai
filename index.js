@@ -2,6 +2,7 @@
 const Commando = require ("discord.js-commando");
 const client = new Commando.Client();
 
+// Setup the client's commands and prefix.
 client.registry.registerDefaults();
 client.registry.registerCommandsIn(__dirname + "/Commands");
 

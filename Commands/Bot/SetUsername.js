@@ -14,11 +14,16 @@ class SetUsernameCommand extends commando.Command
 
     async run (message, args) 
     {
-        var username = message.content.replace ("~setusername ", "");
+        if(message.author.id == "182822432372031488")
+        {
+            var username = message.content.replace ("~setusername ", "");
         
-        message.client.user.setUsername (username);
+            await message.client.user.setUsername (username);
 
-        console.log ("Username was changed:\nNew username is: " + username);
+            console.log ("Username was changed:\nNew username is: " + username);
+
+            return;
+        }
     }
 }
 

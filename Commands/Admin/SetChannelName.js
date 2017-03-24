@@ -14,26 +14,30 @@ class SetChannelNameCommand extends commando.Command
 
     async run (message, args)
     {
-        // Remove the command from the message and returns the channel name.
-        var channel = message.content.replace ("~channel ", "");
-
-        // Ensure that the given channel name is usable.
-        if (IsAlphaNumeric (channel))
+        // Ensure that the user has the permission to change the channel name.
+        if(message.member.permissions.hasPermission ("MANAGE_CHANNELS"))
         {
-            await message.channel.startTyping ();
-            // Change the channel name to the name provided.
-            message.channel.setName (channel).catch (console.error);
+            // Remove the command from the message and returns the channel name.
+            var channel = message.content.replace ("~channel ", "");
 
-            // Inform user of channel name change.
-            await message.channel.sendMessage ("Channel name has been changed! ^.^ Happy to help.");
-            await message.channel.stopTypinsg (true);
+            // Ensure that the given channel name is usable.
+            if (IsAlphaNumeric (channel))
+            {
+                await message.channel.startTyping ();
+                // Change the channel name to the name provided.
+                message.channel.setName (channel).catch (console.error);
 
-            return;
+                // Inform user of channel name change.
+                await message.channel.sendMessage ("Channel name has been changed! ^.^ Happy to help.");
+                await message.channel.stopTyping (true);
+
+                return;
+            }
+
+            // Inform the user as to why it failed.
+            await message.channel.sendMessage ("I can't do that!\nChannels can only be _alphanumeric_ with dashes: '-' and underscores: '_'\nSorry!");
+            await message.channel.stopTyping (true);
         }
-
-        // Inform the user as to why it failed.
-        await message.channel.sendMessage ("I can't do that!\nChannels can only be _alphanumeric_ with dashes: '-' and underscores: '_'\nSorry!");
-        await message.channel.stopTyping (true);
     }
 }
 
@@ -57,7 +61,7 @@ function IsAlphaNumeric (str)
         return false;
     }
     
-    // They did? String is alphanumeric.
+    // It did? String is alphanumeric.
     return true;
 }
 

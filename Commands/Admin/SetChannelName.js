@@ -25,7 +25,7 @@ class SetChannelNameCommand extends commando.Command
             {
                 await message.channel.startTyping ();
                 // Change the channel name to the name provided.
-                message.channel.setName (channel).catch (console.error);
+                await message.channel.setName (channel).catch (console.error);
 
                 // Inform user of channel name change.
                 await message.channel.sendMessage ("Channel name has been changed! ^.^ Happy to help.");

@@ -37,7 +37,7 @@ class EightBallCommand extends commando.Command
         ];
 
         // Generate the index of the response and then store it.
-        var index = Math.floor (Math.random() * phrases.length) + 0;
+        var index = Math.floor (Math.random () * phrases.length) + 0;
         var response = phrases[index];
 
         // Remove the command from the question.
@@ -46,7 +46,7 @@ class EightBallCommand extends commando.Command
         // Send the response to the user.
         await message.channel.startTyping ();
         await message.channel.sendMessage (":question: **Question:** " + question + "\n:8ball: **Response:** " + response);
-        await message.channe.stopTyping (true);
+        await message.channel.stopTyping (true);
     }
 }
 

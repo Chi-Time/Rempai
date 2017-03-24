@@ -5,7 +5,7 @@ class EightBallCommand extends commando.Command
     constructor(client)
     {
         super(client, {
-            group: "bot",
+            group: "decision",
             name: "8ball",
             memberName: "8ball",
             description: "Selects a random phrase in response to a question."

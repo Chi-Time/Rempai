@@ -23,7 +23,7 @@ class SetChannelTopicCommand extends commando.Command
             var topic = message.content.replace ("~topic ", "");
 
             // Change the channel topic to the topic provided.
-            message.channel.setTopic (topic).catch (console.error);
+            await message.channel.setTopic (topic).catch (console.error);
 
             // Inform user of channel topic change.
             await message.channel.sendMessage ("Channel topic has been changed! ^.^ Happy to help.");

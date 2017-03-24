@@ -7,7 +7,10 @@ client.registry.registerDefaults ();
 client.registry.registerGroups ([
     ["bot", "Bot"],
     ["admin", "Admin"],
+    ["social", "Social"],
+    ["search", "Search"],
     ["random", "Random"],
+    ["utility", "Utility"],
     ["decision", "Decision"],
 ]);
 client.registry.registerCommandsIn (__dirname + "/Commands");

@@ -14,35 +14,44 @@ class RandomRangeCommand extends commando.Command
 
     async run(message, args) 
     {
+        // The message has no seperator?
         if(!message.content.includes (","))
         {
+            // Inform the user that the command must have a seperator between the two numbers.
             await message.channel.startTyping ();
-            await message.channel.sendMessage ("shrug No seperators found, I don't understand it boo. ¯\_(ツ)_/¯");
+            await message.channel.sendMessage ("No seperators found, I don't understand it boo. ¯\_(ツ)_/¯");
             await message.channel.stopTyping ();
 
             return;
         }
 
+        // Split the message and remove the command usage from the first element.
         var lines = message.content.split (",");
-        console.log("Line 1: " + lines[0] + "\nLine 2: " + lines[1]);
         lines[0] = lines[0].replace ("~rng ", "");
-        console.log("Line 1: " + lines[0] + "\nLine 2: " + lines[1]);
 
+        // Ensure that the two ranges can be parsed.
         if(parseInt (lines[0]) != NaN && parseInt (lines[1]) != NaN)
         {
+            // Parse the min and max number ranges.
             var min = parseInt (lines[0]);
             var max = parseInt (lines[1]);
 
-            console.log("min: " + min + "\nmax: " + max);
-
+            // Perform a calculation to generate a number inclusive of both the bottom and top ranges.
             var value = Math.floor (Math.random () * (max - min + 1) + min);
 
-            console.log("value: " + value);
-
+            // Send the generate value back to the user.
             await message.channel.startTyping ();
             await message.channel.sendMessage (value);
             await message.channel.stopTyping ();
+        
+            // Break from the function.
+            return;
         }
+
+        // Inform the user as to why the command failed.
+        await message.channel.startTyping ();
+        await message.channel.sendMessage ("Huh... _Scratches head_ I can't seem to parse that. I only accept two numbers.");
+        await message.channel.stopTyping ();
     }
 }
 

@@ -14,8 +14,10 @@ class YesNoCommand extends commando.Command
 
     async run (message, args)
     {
+        // Remove command usage so only the question remains.
         var question = message.content.replace ("~yesno ", "");
 
+        // Array of response images.
         var responses = [
             "http://www.reactiongifs.com/wp-content/gallery/no/no-effin-way.gif",
             "http://www.reactiongifs.com/wp-content/gallery/no/seth-rogan-no.gif",
@@ -39,11 +41,14 @@ class YesNoCommand extends commando.Command
             "http://www.reactiongifs.com/wp-content/gallery/yes/the_rock_gif.gif",
         ];
 
+        // Get a random index from the array and retrieve the response there.
         var index = Math.floor (Math.random () * responses.length) + 0;
-
         var response = responses[index];
 
+        // Send the response back to the user.
+        await message.channel.startTyping ();
         await message.channel.sendMessage ("Question: " + question + "\n" + response);
+        await message.channel.stopTyping (true);
     }
 }
 

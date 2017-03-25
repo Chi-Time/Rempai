@@ -12,6 +12,7 @@ class SetRoleCommand extends commando.Command
         });
     }
 
+    // Add in the ability to add roles to OTHER members.
     async run (message, args)
     {
         // Ensure that the user is allowed to add roles to themselves.
@@ -35,7 +36,7 @@ class SetRoleCommand extends commando.Command
                 {
                     // Inform the user that the role has been successfully given.
                     await message.channel.startTyping ();
-                    await message.channel.sendMessage ("You've been given the: " + role + "\nHope ya enjoy it!");
+                    await message.channel.sendMessage ("You've been given the: **" + role + "** role.\nHope ya enjoy it!");
                     await message.channel.stopTyping (true);
 
                     return;

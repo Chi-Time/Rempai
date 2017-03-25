@@ -6,6 +6,7 @@ const client = new Commando.Client ();
 client.registry.registerDefaults ();
 client.registry.registerGroups ([
     ["bot", "Bot"],
+    ["user", "User"],
     ["admin", "Admin"],
     ["social", "Social"],
     ["search", "Search"],

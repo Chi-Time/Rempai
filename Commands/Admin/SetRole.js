@@ -8,7 +8,7 @@ class SetRoleCommand extends commando.Command
             group: "admin",
             name: "setrole",
             memberName: "setrole",
-            description: ""
+            description: "Get's the specified role and grants it to the mentioned user.",
         });
     }
 

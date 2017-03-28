@@ -12,10 +12,10 @@ class SetRoleCommand extends commando.Command
         });
     }
 
-    // Add in the ability to add roles to OTHER members.
+
     async run (message, args)
     {
-        // Ensure that the user is allowed to add roles to themselves.
+        // Ensure that the user is allowed to add roles.
         if(message.member.permissions.hasPermission ("MANAGE_ROLES_OR_PERMISSIONS"))
         {
             if(message.isMentioned (message.mentions.users.first ()))

@@ -12,10 +12,9 @@ class RemoveRoleCommand extends commando.Command
         });
     }
 
-    // Add in the ability to add roles to OTHER members.
     async run (message, args)
     {
-        // Ensure that the user is allowed to add roles to themselves.
+        // Ensure that the user is allowed to remove roles.
         if(message.member.permissions.hasPermission ("MANAGE_ROLES_OR_PERMISSIONS"))
         {
             if(message.isMentioned (message.mentions.users.first ()))
@@ -50,13 +49,13 @@ class RemoveRoleCommand extends commando.Command
                             //var guildRole = await member.addRole (roleID);//.catch (console.error);
 
                             //TODO: Fix this as catching an error is not a sufficient way to deal with this.
-                            // Add the role to the mentioned user.
+                            // Remove the role from the mentioned user.
                             var guildRole = await member.removeRole (roleID).catch(console.error);
 
-                            // Ensure that the role has and can be given to the user.
+                            // Ensure that the role has and can be removed from the user.
                             if (guildRole != undefined) 
                             {
-                                // Inform the user that the role has been successfully given.
+                                // Inform the user that the role has been successfully removed.
                                 await message.channel.startTyping ();
                                 await message.channel.sendMessage ("The **" + role + "** role has been removed. Sorry for the demotion!");
                                 await message.channel.stopTyping (true);
@@ -64,7 +63,7 @@ class RemoveRoleCommand extends commando.Command
                                 return;
                             }
 
-                            // Inform the user as to why the role cannot be given.
+                            // Inform the user as to why the role cannot be removed.
                             await message.channel.startTyping ();
                             await message.channel.sendMessage ("I can't remove that role. It's just not possible, sorry boo.");
                             await message.channel.stopTyping (true);

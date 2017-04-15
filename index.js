@@ -51,6 +51,7 @@ function SetupClient ()
         ["search", "Search"],
         ["random", "Random"],
         ["utility", "Utility"],
+        ["reaction", "Reaction"],
         ["decision", "Decision"],
     ]);
     client.registry.registerCommandsIn (__dirname + "/Commands");

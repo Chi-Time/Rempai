@@ -20,9 +20,24 @@ class RateWaifuCommand extends commando.Command
         // Remove the command from the message so that only the waifu name remains.
         var waifu = message.content.replace("~ratewaifu ", "");
 
+        // A list of adjectives to add before the rating.
+        var adjectives = [
+            "solid",
+            "meh",
+            "weak",
+            "slick",
+            "wonderful"
+        ];
+
+        // Retrieve a random adjective to place before the rating.
+        var adjective = adjectives[Math.floor(Math.random() * adjectives.length) + 0];
+
+        // Create the formatted response for the user.
+        var response = `${waifu}?\nI'd give em a ${adjective} ${rating}/10 ;D`;
+
         // Send the rating of the waifu to the user.
         await message.channel.startTyping ();
-        await message.channel.sendMessage (waifu + "?\nI'd give em a solid " + rating + "/10 ;D");
+        await message.channel.sendMessage (response);
         await message.channel.stopTyping ();
     }
 }

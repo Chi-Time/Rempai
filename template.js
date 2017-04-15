@@ -14,6 +14,10 @@ class CommandTemplate extends commando.Command
 
     async run (message, args)
     {
+        // Send the response to the user.
+        await message.channel.startTyping ();
+        await message.channel.sendMessage ();
+        await message.channel.stopTyping (true);
     }
 }
 

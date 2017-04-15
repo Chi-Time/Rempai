@@ -1,6 +1,7 @@
 // Creates the initial client.
 const Commando = require ("discord.js-commando");
 const client = new Commando.Client ();
+const token = "Mjk0MTUwMDMxMzQxMTI1NjQy.C7Q8FA.jJuIbC9ksIYOWkvfbAXW6s-jazE";
 
 // Setup the client's commands and prefix.
 client.registry.registerDefaults ();
@@ -26,4 +27,4 @@ client.on ("ready", () => {
 });
 
 // Log the client into Discord.
-client.login ("Mjk0MTUwMDMxMzQxMTI1NjQy.C7Q8FA.jJuIbC9ksIYOWkvfbAXW6s-jazE");
+client.login (token);

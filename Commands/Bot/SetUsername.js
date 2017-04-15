@@ -17,6 +17,9 @@ class SetUsernameCommand extends commando.Command
         // Ensure the author is the owner of the bot.
         if(message.author.id == "182822432372031488")
         {
+            // Create a date for debugging purposes.
+            var now = new Date();
+
             // Remove the command usage from the statement.
             var username = message.content.replace ("~setusername ", "");
 
@@ -29,7 +32,7 @@ class SetUsernameCommand extends commando.Command
             await message.channel.stopTyping (true);
 
             // Log the name change into the console.
-            console.log ("Username was changed!\nNew username is: " + username);
+            console.log (now.toLocaleString() + ":\nUsername was changed!\nNew username is: " + username);
 
             // Break from the function.
             return;

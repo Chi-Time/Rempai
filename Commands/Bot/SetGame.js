@@ -17,6 +17,9 @@ class SetGameCommand extends commando.Command
         //Ensure the author is the owner of the bot.
         if(message.author.id == "182822432372031488")
         {
+            // Create a date for debugging purposes.
+            var now = new Date();
+
             // Remove the command usage from the statement.
             var game = message.content.replace ("~setgame ", "");
 
@@ -29,7 +32,7 @@ class SetGameCommand extends commando.Command
             await message.channel.stopTyping (true);
 
             // Log the game change into the console.
-            console.log ("Game status was changed!\nNew game status is: " + game);
+            console.log (now.toLocaleString() + ":\nGame status was changed!\nNew game status is: " + game + "\n");
 
             // Break from the function.
             return;

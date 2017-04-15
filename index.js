@@ -1,41 +1,42 @@
-// Creates the initial client.
+// Global variables for the file.
 const Commando = require ("discord.js-commando");
 const client = new Commando.Client ();
 const fs = require ("fs");
-var config = null;
+let config = null;
 
-Enter();
+// Start the program.
+Enter ();
 
 // Entry point for the program.
 function Enter ()
 {
-    SetConsoleTitle("Rempai Logger");
-    GetConfiguration();
+    SetConsoleTitle ("Rempai Logger");
+    GetConfiguration ();
 }
 
 // Set the title of the console window.
-function SetConsoleTitle(title)
+function SetConsoleTitle (title)
 {
     process.stdout.write(
-        `${String.fromCharCode(27)}]0; ${title} ${String.fromCharCode(7)}`
+        `${String.fromCharCode (27)}]0; ${title} ${String.fromCharCode (7)}`
     );
 }
 
 // Get the current configuration file for the bot.
 function GetConfiguration ()
 {
-    fs.readFile("config.json", "utf8", (err, data) => ParseConfiguration(err, data));
+    fs.readFile("config.json", "utf8", (err, data) => ParseConfiguration (err, data));
 }
 
 // Parse the configuration data for the bot.
 function ParseConfiguration (err, data)
 {
     if (err)
-        return console.log(err);
+        return console.log (err);
 
-    config = JSON.parse(data);
+    config = JSON.parse (data);
 
-    SetupClient();
+    SetupClient ();
 }
 
 // Setup the clients modules and prefix.
@@ -56,7 +57,7 @@ function SetupClient ()
 
     client.commandPrefix = config.Prefix;
 
-    LogClient();
+    LogClient ();
 }
 
 // Log the client into Discord.
@@ -66,7 +67,7 @@ function LogClient ()
 }
 
 // Event handler for when the bot has logged in.
-client.on ("ready", () => InitialiseClient());
+client.on ("ready", () => InitialiseClient ());
 
 // Setup the client's initial values.
 function InitialiseClient ()
@@ -80,5 +81,5 @@ function InitialiseClient ()
 
     // Print welcome message as visual aid of connection.
     console.log ("Logging in.\n");
-    console.log("Rempai is good to go! All modules are ready. I'm here boo. <3\n");
+    console.log ("Rempai is good to go! All modules are ready. I'm here boo. <3\n");
 }

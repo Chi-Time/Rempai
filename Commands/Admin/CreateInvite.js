@@ -8,7 +8,7 @@ class CreateInviteCommand extends commando.Command
             group: "admin",
             name: "invite",
             memberName: "invite",
-            description: ""
+            description: "Create's an instant invite for the current channel."
         });
     }
 

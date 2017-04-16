@@ -8,7 +8,7 @@ class RemoveRoleCommand extends commando.Command
             group: "admin",
             name: "removerole",
             memberName: "removerole",
-            description: ""
+            description: "Removes the role from the given user."
         });
     }
 

@@ -30,7 +30,7 @@ class GetAvatarCommand extends commando.Command
 
         // Inform the user that no one was mentioned and cannot grab avatar.
         await message.channel.startTyping ();
-        await message.channel.sendMessage ("There was no-one to grab the avatar from!\nI can't work magic boo. Q_Q");
+        await message.channel.sendMessage (message.author.avatarURL);
         await message.channel.stopTyping (true);
     }
 }

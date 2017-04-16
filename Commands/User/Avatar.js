@@ -24,6 +24,8 @@ class GetAvatarCommand extends commando.Command
             await message.channel.startTyping ();
             await message.channel.sendMessage (avatar);
             await message.channel.stopTyping (true);
+
+            return;
         }
 
         // Inform the user that no one was mentioned and cannot grab avatar.

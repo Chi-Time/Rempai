@@ -24,22 +24,46 @@ class GetAvatarCommand extends commando.Command
             // Grab the mentioned user's avatar.
             var avatar = await message.mentions.users.first().avatarURL;
 
-            console.log(now.toLocaleString () + ": User avatar retrieved!\nUser: " + message.mentions.users.first().username + "\n");
+            // Ensure that the user has an avatar to return.
+            if(avatar != null)
+            {
+                console.log(now.toLocaleString () + ": User avatar retrieved!\nUser: " + message.mentions.users.first().username + "\n");
 
-            // Return the avatar to the user.
+                // Return the avatar to the user.
+                await message.channel.startTyping ();
+                await message.channel.sendMessage (avatar);
+                await message.channel.stopTyping (true);
+
+                return;
+            }
+
+            // Return the response to the user.
             await message.channel.startTyping ();
-            await message.channel.sendMessage (avatar);
+            await message.channel.sendMessage ("That user doesn't appear to have an avatar. Sorry boo. Q_Q");
             await message.channel.stopTyping (true);
 
             return;
         }
 
-        console.log(now.toLocaleString () + ": User avatar retrieved!\nUser: " + message.author.username + "\n");
+        // Ensure that the user has an avatar to return.
+        if(message.author.avatarURL != null)
+        {
+            console.log(now.toLocaleString () + ": User avatar retrieved!\nUser: " + message.author.username + "\n");
 
-        // Inform the user that no one was mentioned and cannot grab avatar.
+            // Return the user's avatar to them.
+            await message.channel.startTyping ();
+            await message.channel.sendMessage (message.author.avatarURL);
+            await message.channel.stopTyping (true);
+
+            return;
+        }
+
+        // Return the response to the user.
         await message.channel.startTyping ();
-        await message.channel.sendMessage (message.author.avatarURL);
+        await message.channel.sendMessage ("That user doesn't appear to have an avatar. Sorry boo. Q_Q");
         await message.channel.stopTyping (true);
+
+        return;
     }
 }
 

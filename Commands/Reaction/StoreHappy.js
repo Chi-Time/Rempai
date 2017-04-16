@@ -19,7 +19,12 @@ class StoreHappyCommand extends commando.Command
 
         if(checkURL(url))
         {
-            var eh = await fs.appendFileSync("Data/Reaction/Happy.txt", ",\n" + message.content);
+            // Create a date for debugging purposes.
+            var now = new Date();
+            
+            await fs.appendFileSync("Data/Reaction/Happy.txt", ",\n" + message.content);
+
+            console.log(now.toLocaleString() + ": Happy Reaction was stored.\nImage stored: " + url + "\n");
 
             // Send the response to the user.
             await message.channel.startTyping ();

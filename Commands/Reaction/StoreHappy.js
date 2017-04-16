@@ -15,6 +15,7 @@ class StoreHappyCommand extends commando.Command
 
     async run (message, args)
     {
+        // Remove the command from the message to get the url.
         var url = message.content.replace ("~storehappy ", "");
 
         if(checkURL(url))

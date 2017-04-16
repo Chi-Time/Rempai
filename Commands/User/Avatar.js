@@ -14,11 +14,17 @@ class GetAvatarCommand extends commando.Command
 
     async run (message, args)
     {
+        //TODO: perform null check on avatar url's.
+        // Create a date for debugging purposes.
+        var now = new Date();
+
         // Ensure that a user was mentioned in the message.
         if (message.isMentioned (message.mentions.users.first()))
         {
             // Grab the mentioned user's avatar.
             var avatar = await message.mentions.users.first().avatarURL;
+
+            console.log(now.toLocaleString () + ": User avatar retrieved!\nUser: " + message.mentions.users.first().username + "\n");
 
             // Return the avatar to the user.
             await message.channel.startTyping ();
@@ -27,6 +33,8 @@ class GetAvatarCommand extends commando.Command
 
             return;
         }
+
+        console.log(now.toLocaleString () + ": User avatar retrieved!\nUser: " + message.author.username + "\n");
 
         // Inform the user that no one was mentioned and cannot grab avatar.
         await message.channel.startTyping ();

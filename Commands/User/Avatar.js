@@ -14,7 +14,6 @@ class GetAvatarCommand extends commando.Command
 
     async run (message, args)
     {
-        //TODO: perform null check on avatar url's.
         // Create a date for debugging purposes.
         var now = new Date();
 

@@ -46,7 +46,7 @@ class PruneCommand extends commando.Command
 
             // Send the response to the user.
             await message.channel.startTyping ();
-            await message.channel.sendMessage ("Sorry! I couldn't parse that. >.<\nOnly give me the number of messages you wish to delete.");
+            await message.channel.sendMessage ("Sorry! That's now how it works. >.<\nOnly give me the number of messages you wish to delete.");
             await message.channel.stopTyping (true);
 
             return;

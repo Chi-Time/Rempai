@@ -14,11 +14,13 @@ class PruneCommand extends commando.Command
 
     async run (message, args)
     {
-        
+        var m = await message.channel.fetchMessages({limit: 10});
+
+        var ma = m.array();
 
         // Send the response to the user.
         await message.channel.startTyping ();
-        await message.channel.sendMessage ();
+        await message.channel.sendMessage ("hey");
         await message.channel.stopTyping (true);
     }
 }

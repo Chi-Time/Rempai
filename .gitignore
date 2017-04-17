@@ -1,4 +1,5 @@
 /Data/Configs
+/Plans/
 
 # Logs
 logs
@@ -37,5 +38,3 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
-TODO's.txt
-pseudocode.txt

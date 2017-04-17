@@ -14,15 +14,47 @@ class PruneCommand extends commando.Command
 
     async run (message, args)
     {
-        var m = await message.channel.fetchMessages({limit: 10});
+        // Determine if user has the correct permissions to delete messages.
+        if (message.member.permissions.hasPermission ("ADMINISTRATOR"))
+        {
+            // Remove the command usage from the message.
+            var content = message.content.replace("~prune ", "");
 
-        var ma = m.array();
+            // Check to see if the message is valid.
+            if(!isNaN(parseInt(content)))
+            {
+                // Retrieve the limit from the message fetch the number of messages.
+                var limit = parseInt(content);
+                var messagesCollection = await message.channel.fetchMessages({limit: limit});
 
-        DebugMessages(messages);
+                // Convert this collection to an array.
+                var messages = messagesCollection.array();
+
+                // Log that a series of messages have been deleted.
+                DebugMessages(messages);
+
+                // Bulk delete the retrieved messages.
+                await message.channel.bulkDelete(messages);
+
+                // Send the response to the user.
+                await message.channel.startTyping ();
+                await message.channel.sendMessage ("Done!\n" + limit + " messages were deleted.");
+                await message.channel.stopTyping (true);
+
+                return;
+            }
+
+            // Send the response to the user.
+            await message.channel.startTyping ();
+            await message.channel.sendMessage ("Sorry! I couldn't parse that. >.<\nOnly give me the number of messages you wish to delete.");
+            await message.channel.stopTyping (true);
+
+            return;
+        }
 
         // Send the response to the user.
         await message.channel.startTyping ();
-        await message.channel.sendMessage ("hey");
+        await message.channel.sendMessage ("Yeah... You don't have the rights to do that.\nSorry my boo. :3");
         await message.channel.stopTyping (true);
     }
 }

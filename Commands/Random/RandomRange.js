@@ -30,7 +30,7 @@ class RandomRangeCommand extends commando.Command
         lines[0] = lines[0].replace ("~rng ", "");
 
         // Ensure that the two ranges can be parsed.
-        if(parseInt (lines[0]) != NaN && parseInt (lines[1]) != NaN)
+        if(!isNaN (parseInt (lines[0])) && !isNaN (parseInt (lines[1])))
         {
             // Parse the min and max number ranges.
             var min = parseInt (lines[0]);

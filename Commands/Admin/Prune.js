@@ -24,7 +24,7 @@ class PruneCommand extends commando.Command
             if(!isNaN(parseInt(content)))
             {
                 // Retrieve the limit from the message fetch the number of messages.
-                var limit = parseInt(content);
+                var limit = parseInt(content) + 1;
                 var messagesCollection = await message.channel.fetchMessages({limit: limit});
 
                 // Convert this collection to an array.
@@ -38,7 +38,7 @@ class PruneCommand extends commando.Command
 
                 // Send the response to the user.
                 await message.channel.startTyping ();
-                await message.channel.sendMessage ("Done!\n" + limit + " messages were deleted.");
+                await message.channel.sendMessage ("Done!\n" + (limit - 1) + " messages were deleted.");
                 await message.channel.stopTyping (true);
 
                 return;

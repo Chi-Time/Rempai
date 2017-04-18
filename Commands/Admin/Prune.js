@@ -20,7 +20,7 @@ class PruneCommand extends commando.Command
             // Remove the command usage from the message.
             var content = message.content.replace("~prune ", "");
 
-            // Check to see if the message is valid.
+            // Check to see if the message contains a valid number.
             if(!isNaN(parseInt(content)))
             {
                 // Retrieve the limit from the message fetch the number of messages.
@@ -38,24 +38,30 @@ class PruneCommand extends commando.Command
 
                 // Send the response to the user.
                 await message.channel.startTyping ();
-                await message.channel.sendMessage ("Done!\n" + (limit - 1) + " messages were deleted.");
+                var sentMessage = await message.channel.sendMessage ("Done!\n" + (limit - 1) + " messages were deleted.");
                 await message.channel.stopTyping (true);
+
+                await sentMessage.delete(5000);
 
                 return;
             }
 
             // Send the response to the user.
             await message.channel.startTyping ();
-            await message.channel.sendMessage ("Sorry! That's now how it works. >.<\nOnly give me the number of messages you wish to delete.");
+            var sentMessage = await message.channel.sendMessage ("Sorry! That's now how it works. >.<\nOnly give me the number of messages you wish to delete.");
             await message.channel.stopTyping (true);
+
+            await sentMessage.delete(5000);
 
             return;
         }
 
         // Send the response to the user.
         await message.channel.startTyping ();
-        await message.channel.sendMessage ("Yeah... You don't have the rights to do that.\nSorry my boo. :3");
+        var sentMessage = await message.channel.sendMessage ("Yeah... You don't have the rights to do that.\nSorry my boo. :3");
         await message.channel.stopTyping (true);
+
+        await sentMessage.delete(5000);
     }
 }
 

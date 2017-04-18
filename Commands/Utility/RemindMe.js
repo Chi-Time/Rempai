@@ -12,7 +12,7 @@ class RemindMeCommand extends commando.Command
         });
     }
 
-    //TODO: Create reminder using either setTimeout or https://github.com/kelektiv/node-cron
+    //TODO: Write id into user config file to cancel timeout later.
     async run (message, args)
     {
         var content = message.content.replace ("~remindme", "");
@@ -31,6 +31,11 @@ class RemindMeCommand extends commando.Command
                 console.log("Matches found: " + matches.length + "\n");
                 console.log(matches + "\n");
 
+                var reminder = content.replace(regPat, "");
+                reminder.trim();
+
+                console.log("Reminder: " + reminder);
+
                 if(matches.length == 2)
                 {
                     if(matches[0].includes("hour"))
@@ -43,7 +48,11 @@ class RemindMeCommand extends commando.Command
                             hours = hours * 3600000;
                             minutes = minutes * 60000;
 
+                            let time = hours + minutes;
+
                             console.log("hours: " + hours + "\nMinutes: " + minutes + "\n");
+
+                            setTimeout(() => message.author.sendMessage(reminder), time);
 
                              // Send the response to the user.
                             await message.channel.startTyping ();
@@ -66,7 +75,11 @@ class RemindMeCommand extends commando.Command
                         hours = hours * 3600000;
                         minutes = minutes * 60000;
 
+                        let time = hours + minutes;
+
                         console.log("hours: " + hours + "\nMinutes: " + minutes + "\n");
+
+                        setTimeout(() => message.author.sendMessage(reminder), time);
 
                         // Send the response to the user.
                         await message.channel.startTyping ();
@@ -89,6 +102,8 @@ class RemindMeCommand extends commando.Command
 
                     console.log("hours: " + hours + "\n");
 
+                    setTimeout(() => message.author.sendMessage(reminder), hours);
+
                     // Send the response to the user.
                     await message.channel.startTyping ();
                     await message.channel.sendMessage ("Reminder set. ONLY HOURS");
@@ -103,9 +118,7 @@ class RemindMeCommand extends commando.Command
 
                 console.log("minutes: " + minutes + "\n");
 
-                var id = setTimeout(() => message.author.sendMessage("Reminder"), minutes);
-
-                //TODO: Write id into user config file to cancel timeout later.
+                setTimeout(() => message.author.sendMessage(reminder), minutes);
 
                 // Send the response to the user.
                 await message.channel.startTyping ();
